@@ -1,6 +1,5 @@
 import React, {useCallback} from 'react'
 import clsx from 'clsx'
-// import Head from 'next/head'
 import {Box, BoxProps, createStyles, makeStyles} from '@material-ui/core'
 
 /*
@@ -102,32 +101,23 @@ export default function JackinBox({
   )
 
   return (
-    <>
-      {/* <Head>
-          <link
-            rel="stylesheet"
-            href={`https://cdnjs.cloudflare.com/ajax/libs/animate.css/${version}/animate.min.css`}
-            key={`animate.css-${version}`}
-          />
-        </Head> */}
-      <Box
-        className={clsx([
-          {
-            [`${prefix}animated`]: animate,
-            [`${prefix}${name}`]: animate && name,
-            [`${prefix}${speed}`]: animate && speed,
-            [`${prefix}infinite`]: animate && infinite,
-            [`${prefix}repeat-${repeat}`]: animate && repeat,
-            [`${prefix}delay-${delay}s`]: animate && delay
-          },
-          classes.root,
-          classNameProp
-        ])}
-        onAnimationEnd={animateEndHandler}
-        {...rest}
-      >
-        {children}
-      </Box>
-    </>
+    <Box
+      className={clsx([
+        {
+          [`${prefix}animated`]: animate,
+          [`${prefix}${name}`]: animate && name,
+          [`${prefix}${speed}`]: animate && speed,
+          [`${prefix}infinite`]: animate && infinite,
+          [`${prefix}repeat-${repeat}`]: animate && repeat,
+          [`${prefix}delay-${delay}s`]: animate && delay
+        },
+        classes.root,
+        classNameProp
+      ])}
+      onAnimationEnd={animateEndHandler}
+      {...rest}
+    >
+      {children}
+    </Box>
   )
 }
