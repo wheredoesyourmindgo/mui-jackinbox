@@ -1,5 +1,7 @@
 # Next-Mui-JackinBox
 
+THIS ISN'T WORKING YET. CHECK BACK SOON.
+
 A Material-UI component that wraps animate.css for use with Next
 
 See the demo to get moving today:
