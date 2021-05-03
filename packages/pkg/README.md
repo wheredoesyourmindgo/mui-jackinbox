@@ -1,6 +1,6 @@
 # Mui-JackinBox
 
-A Material-UI component that wraps animate.css for use with Next
+A Material-UI component that wraps animate.css.
 
 See the demo to get moving today:
 
