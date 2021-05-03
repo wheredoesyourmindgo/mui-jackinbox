@@ -5,7 +5,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter'
 
 const codeBlock = `
 import React, {useCallback, useEffect, useState} from 'react'
-import JackinBox from '../lib/pkg/index'
+import JackinBox from 'next-mui-jackinbox'
 import {Box, BoxProps, Divider, Paper} from '@material-ui/core'
 
 const IndexPage = () => {
