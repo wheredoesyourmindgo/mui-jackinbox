@@ -22,6 +22,7 @@ export type Props = {
   repeat?: boolean | 1 | 2 | 3
   infinite?: boolean
   version?: string
+  prefix?: string
   delayBy?: string // defaults to 1s
   speedBy?: string // defaults to 1s
   repeatBy?: number // defaults to 1
@@ -65,6 +66,7 @@ export default function JackinBox({
   animate = true,
   name,
   version = VERSION,
+  prefix = PREFIX,
   hideUntilAnimate = false,
   noDisplayUntilAnimate = false,
   delayBy = '1s',
@@ -111,12 +113,12 @@ export default function JackinBox({
       <Box
         className={clsx([
           {
-            [`${PREFIX}animated`]: animate,
-            [`${PREFIX}${name}`]: animate && name,
-            [`${PREFIX}${speed}`]: animate && speed,
-            [`${PREFIX}infinite`]: animate && infinite,
-            [`${PREFIX}repeat-${repeat}`]: animate && repeat,
-            [`${PREFIX}delay-${delay}s`]: animate && delay
+            [`${prefix}animated`]: animate,
+            [`${prefix}${name}`]: animate && name,
+            [`${prefix}${speed}`]: animate && speed,
+            [`${prefix}infinite`]: animate && infinite,
+            [`${prefix}repeat-${repeat}`]: animate && repeat,
+            [`${prefix}delay-${delay}s`]: animate && delay
           },
           classes.root,
           classNameProp
