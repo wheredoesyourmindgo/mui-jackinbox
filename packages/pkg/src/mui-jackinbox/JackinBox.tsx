@@ -93,6 +93,7 @@ export default function JackinBox({
   const animateEndHandler = useCallback(
     (e?: React.AnimationEvent<HTMLElement>) => {
       onAnimateEnd?.(e)
+      // Don't trigger animation end events w/ nested <JackinBox/> children
       e?.stopPropagation()
     },
     [onAnimateEnd]
