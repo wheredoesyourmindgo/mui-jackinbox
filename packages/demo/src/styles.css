@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
 body {
   margin: 0;
   padding: 0;
-  background-color: white;
+  background-color: #1f9bb4;
   font-family: sans-serif;
+  color: #f1f1f1;
+}
+
+pre {
+  margin: 0;
 }
 
 .App {

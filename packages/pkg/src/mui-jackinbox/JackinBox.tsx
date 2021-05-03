@@ -20,6 +20,7 @@ export type Props = {
   delay?: boolean | 1 | 2 | 3 | 4 | 5
   repeat?: boolean | 1 | 2 | 3
   infinite?: boolean
+  version?: string
 } & BoxProps
 
 const useStyles = makeStyles(() =>
@@ -35,6 +36,7 @@ export default function JackinBox({
   className: classNameProp,
   animate = true,
   name,
+  version = VERSION,
   hideUntilAnimate = false,
   speed,
   infinite,
@@ -53,8 +55,8 @@ export default function JackinBox({
       <Head>
         <link
           rel="stylesheet"
-          href={`https://cdnjs.cloudflare.com/ajax/libs/animate.css/${VERSION}/animate.min.css`}
-          key="animate.css"
+          href={`https://cdnjs.cloudflare.com/ajax/libs/animate.css/${version}/animate.min.css`}
+          key={`animate.css-${version}`}
         />
       </Head>
       <Box

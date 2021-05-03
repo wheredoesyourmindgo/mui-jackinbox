@@ -9,5 +9,6 @@ export declare type Props = {
     delay?: boolean | 1 | 2 | 3 | 4 | 5;
     repeat?: boolean | 1 | 2 | 3;
     infinite?: boolean;
+    version?: string;
 } & BoxProps;
-export default function JackinBox({ children, className: classNameProp, animate, name, hideUntilAnimate, speed, infinite, delay: delayProp, repeat: repeatProp, ...rest }: Props): JSX.Element;
+export default function JackinBox({ children, className: classNameProp, animate, name, version, hideUntilAnimate, speed, infinite, delay: delayProp, repeat: repeatProp, ...rest }: Props): JSX.Element;
