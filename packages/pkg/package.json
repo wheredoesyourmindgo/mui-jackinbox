@@ -22,6 +22,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "npm run build",
+    "postpublish": "git push",
     "type-check": "tsc -p .",
     "install-peers": "install-peers -f",
     "build": "microbundle --jsx React.createElement --tsconfig tsconfig.json --jsxFragment React.Fragment",
