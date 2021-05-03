@@ -10,7 +10,7 @@
     "react",
     "animate.css"
   ],
-  "version": "0.0.5",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "license": "MIT",
   "source": "src/index.ts",
@@ -22,6 +22,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "npm run build",
+    "publish:patch": "yarn publish patch && git push",
+    "publish:minor": "yarn publish minor && git push",
+    "publish:major": "yarn publish major && git push",
     "type-check": "tsc -p .",
     "install-peers": "install-peers -f",
     "build": "microbundle --format modern,cjs --jsx React.createElement --tsconfig tsconfig.json --jsxFragment React.Fragment",
