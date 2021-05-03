@@ -104,7 +104,7 @@ const IndexPage = () => {
             <Divider style={{height: 3}} />
           </JackinBox>
         </JackinBox>
-        <JackinBox name="fadeIn" delay={4} animate={bye} hideUntilAnimate>
+        <JackinBox name="fadeIn" delay={4} animate={bye} noDisplayUntilAnimate>
           <Typography variant="h2" gutterBottom>
             That was brought to you by...
           </Typography>

@@ -5,10 +5,11 @@ export declare type Props = {
     animate?: boolean;
     name: string;
     hideUntilAnimate?: boolean;
+    noDisplayUntilAnimate?: boolean;
     speed?: 'slow' | 'slower' | 'fast' | 'faster';
     delay?: boolean | 1 | 2 | 3 | 4 | 5;
     repeat?: boolean | 1 | 2 | 3;
     infinite?: boolean;
     version?: string;
-} & BoxProps;
-export default function JackinBox({ children, className: classNameProp, animate, name, version, hideUntilAnimate, speed, infinite, delay: delayProp, repeat: repeatProp, ...rest }: Props): JSX.Element;
+} & Partial<BoxProps>;
+export default function JackinBox({ children, className: classNameProp, animate, name, version, hideUntilAnimate, noDisplayUntilAnimate, speed, infinite, delay: delayProp, repeat: repeatProp, ...rest }: Props): JSX.Element;

@@ -16,18 +16,30 @@ export type Props = {
   animate?: boolean
   name: string
   hideUntilAnimate?: boolean
+  noDisplayUntilAnimate?: boolean
   speed?: 'slow' | 'slower' | 'fast' | 'faster'
   delay?: boolean | 1 | 2 | 3 | 4 | 5
   repeat?: boolean | 1 | 2 | 3
   infinite?: boolean
   version?: string
-} & BoxProps
+} & Partial<BoxProps>
+
+interface UseStylesProps {
+  hidden: boolean
+  noDisplay: boolean
+}
 
 const useStyles = makeStyles(() =>
   createStyles({
-    hidden: {
-      visibility: 'hidden'
-    }
+    root: ({hidden, noDisplay}: UseStylesProps) => ({
+      // Conditional CSS Properties
+      ...(hidden && {
+        visibility: 'hidden'
+      }),
+      ...(noDisplay && {
+        display: 'none'
+      })
+    })
   })
 )
 
@@ -38,15 +50,17 @@ export default function JackinBox({
   name,
   version = VERSION,
   hideUntilAnimate = false,
+  noDisplayUntilAnimate = false,
   speed,
   infinite,
   delay: delayProp = false,
   repeat: repeatProp = false,
   ...rest
 }: Props) {
-  const classes = useStyles()
   // Use animate value to determine when the element should be visible
   const hidden = hideUntilAnimate ? !animate : false
+  const noDisplay = noDisplayUntilAnimate ? !animate : false
+  const classes = useStyles({hidden, noDisplay})
   const delay = delayProp === true ? 1 : delayProp
   const repeat = repeatProp === true ? 1 : repeatProp
 
@@ -56,7 +70,7 @@ export default function JackinBox({
         <link
           rel="stylesheet"
           href={`https://cdnjs.cloudflare.com/ajax/libs/animate.css/${version}/animate.min.css`}
-          key={`animate.css-${version}`}
+          key={`animatecss-${version}`}
         />
       </Head>
       <Box
@@ -67,9 +81,9 @@ export default function JackinBox({
             [`${PREFIX}${speed}`]: animate && speed,
             [`${PREFIX}infinite`]: animate && infinite,
             [`${PREFIX}repeat-${repeat}`]: animate && repeat,
-            [`${PREFIX}delay-${delay}s`]: animate && delay,
-            [classes.hidden]: hidden
+            [`${PREFIX}delay-${delay}s`]: animate && delay
           },
+          classes.root,
           classNameProp
         ])}
         {...rest}
