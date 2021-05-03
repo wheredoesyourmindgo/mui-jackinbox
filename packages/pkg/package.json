@@ -1,9 +1,9 @@
 {
-  "name": "next-mui-jackinbox",
+  "name": "mui-jackinbox",
   "description": "A Material-UI component that wraps animate.css for use with Next.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wheredoesyourmindgo/next-mui-jackinbox"
+    "url": "https://github.com/wheredoesyourmindgo/mui-jackinbox"
   },
   "keywords": [
     "material-ui",

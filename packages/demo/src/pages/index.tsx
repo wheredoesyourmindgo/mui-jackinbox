@@ -6,7 +6,7 @@ import Head from 'next/head'
 
 const codeBlock = `
 import React, {useCallback, useEffect, useState} from 'react'
-import JackinBox from 'next-mui-jackinbox'
+import JackinBox from 'mui-jackinbox'
 import {Box, BoxProps, Divider, Paper} from '@material-ui/core'
 import Head from 'next/head'
 
