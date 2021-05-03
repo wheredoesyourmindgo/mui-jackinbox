@@ -15,40 +15,49 @@ const IndexPage = () => {
   )
 
   const [bye, setBye] = useState(false)
+  const [showCode, setShowCode] = useState(false)
+
   useEffect(() => {
     setTimeout(() => setBye(true), 10000)
   }, [])
 
+  const animateEndHandler = useCallback(() => {
+    setShowCode(true)
+  }, [])
+
   return (
-    <main className="App">
-      <div>
-        <Spacing />
-        <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="center"
-          width="100%"
+    <Box component="main" className="App">
+      <Spacing />
+      <Box
+        display={showCode ? 'none' : 'flex'}
+        flexDirection="row"
+        justifyContent="center"
+        width="100%"
+      >
+        <JackinBox
+          name="hinge"
+          animate={bye}
+          delay={1}
+          onAnimateEnd={animateEndHandler}
         >
-          <JackinBox name="hinge" animate={bye} delay={1}>
-            <JackinBox name="heartBeat" speed="fast" infinite animate={!bye}>
-              <JackinBox name="rollIn" delay={2} speed="slower">
-                <h1>Wow!</h1>
-              </JackinBox>
+          <JackinBox name="heartBeat" speed="fast" infinite animate={!bye}>
+            <JackinBox name="rollIn" delay={2} speed="slower">
+              <Typography variant="h1">Wow!</Typography>
             </JackinBox>
           </JackinBox>
-        </Box>
-        <JackinBox name="fadeInUpBig" delay={5}>
-          <JackinBox
-            name="fadeOutLeftBig"
-            animate={bye}
-            maxWidth="50vw"
-            margin="auto"
-          >
-            <Divider style={{height: 3}} />
-          </JackinBox>
         </JackinBox>
-      </div>
-    </main>
+      </Box>
+      <JackinBox name="fadeInUpBig" delay={5}>
+        <JackinBox
+          name="fadeOutLeftBig"
+          animate={bye}
+          maxWidth="50vw"
+          margin="auto"
+        >
+          <Divider style={{height: 3}} />
+        </JackinBox>
+      </JackinBox>
+    </Box>
   )
 }
 
@@ -62,6 +71,7 @@ const IndexPage = () => {
   )
 
   const [bye, setBye] = useState(false)
+  const [showCode, setShowCode] = useState(false)
 
   useEffect(() => {
     setTimeout(() => setBye(true), 10000)
@@ -76,46 +86,53 @@ const IndexPage = () => {
     []
   )
 
+  const animateEndHandler = useCallback(() => {
+    setShowCode(true)
+  }, [])
+
   return (
-    <main className="App">
-      <div>
-        <Spacing />
-        <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="center"
-          width="100%"
+    <Box component="main" className="App">
+      <Spacing />
+      <Box
+        display={showCode ? 'none' : 'flex'}
+        flexDirection="row"
+        justifyContent="center"
+        width="100%"
+      >
+        <JackinBox
+          name="hinge"
+          animate={bye}
+          delay={1}
+          onAnimateEnd={animateEndHandler}
         >
-          <JackinBox name="hinge" animate={bye} delay={1}>
-            <JackinBox name="heartBeat" speed="fast" infinite animate={!bye}>
-              <JackinBox name="rollIn" delay={2} speed="slower">
-                <Typography variant="h1">Wow!</Typography>
-              </JackinBox>
+          <JackinBox name="heartBeat" speed="fast" infinite animate={!bye}>
+            <JackinBox name="rollIn" delay={2} speed="slower">
+              <Typography variant="h1">Wow!</Typography>
             </JackinBox>
           </JackinBox>
-        </Box>
-        <JackinBox name="fadeInUpBig" delay={5}>
-          <JackinBox
-            name="fadeOutLeftBig"
-            animate={bye}
-            maxWidth="50vw"
-            margin="auto"
-          >
-            <Divider style={{height: 3}} />
-          </JackinBox>
         </JackinBox>
-        <JackinBox name="fadeIn" delay={4} animate={bye} noDisplayUntilAnimate>
-          <Typography variant="h2" gutterBottom>
-            That was brought to you by...
-          </Typography>
-          <Paper component={PaperBox}>
-            <SyntaxHighlighter language="javascript">
-              {codeBlock}
-            </SyntaxHighlighter>
-          </Paper>
+      </Box>
+      <JackinBox name="fadeInUpBig" delay={5}>
+        <JackinBox
+          name="fadeOutLeftBig"
+          animate={bye}
+          maxWidth="50vw"
+          margin="auto"
+        >
+          <Divider style={{height: 3}} />
         </JackinBox>
-      </div>
-    </main>
+      </JackinBox>
+      <JackinBox name="fadeIn" delay={4} animate={bye} noDisplayUntilAnimate>
+        <Typography variant="h2" gutterBottom>
+          That was brought to you by...
+        </Typography>
+        <Paper component={PaperBox}>
+          <SyntaxHighlighter language="javascript">
+            {codeBlock}
+          </SyntaxHighlighter>
+        </Paper>
+      </JackinBox>
+    </Box>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import clsx from 'clsx'
 import Head from 'next/head'
 import {Box, BoxProps, createStyles, makeStyles} from '@material-ui/core'
@@ -17,21 +17,37 @@ export type Props = {
   name: string
   hideUntilAnimate?: boolean
   noDisplayUntilAnimate?: boolean
-  speed?: 'slow' | 'slower' | 'fast' | 'faster'
+  speed?: 'slower' | 'slow' | 'fast' | 'faster' // 3s (or 3x), 2s (or 2x), 800ms (or .8x), 500ms (or .5x)
   delay?: boolean | 1 | 2 | 3 | 4 | 5
   repeat?: boolean | 1 | 2 | 3
   infinite?: boolean
   version?: string
+  delayBy?: string // defaults to 1s
+  speedBy?: string // defaults to 1s
+  repeatBy?: number // defaults to 1
+  onAnimateEnd?: (e?: React.AnimationEvent<HTMLElement>) => void
 } & Partial<BoxProps>
 
 interface UseStylesProps {
   hidden: boolean
   noDisplay: boolean
+  delayBy: string
+  speedBy: string
+  repeatBy: number
 }
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: ({hidden, noDisplay}: UseStylesProps) => ({
+    root: ({
+      hidden,
+      noDisplay,
+      delayBy,
+      speedBy,
+      repeatBy
+    }: UseStylesProps) => ({
+      '--animate-delay': delayBy,
+      '--animate-duration': speedBy,
+      '--animate-repeat': repeatBy,
       // Conditional CSS Properties
       ...(hidden && {
         visibility: 'hidden'
@@ -51,18 +67,36 @@ export default function JackinBox({
   version = VERSION,
   hideUntilAnimate = false,
   noDisplayUntilAnimate = false,
+  delayBy = '1s',
+  speedBy = '1s',
+  repeatBy = 1,
   speed,
   infinite,
   delay: delayProp = false,
   repeat: repeatProp = false,
+  onAnimateEnd,
   ...rest
 }: Props) {
   // Use animate value to determine when the element should be visible
   const hidden = hideUntilAnimate ? !animate : false
   const noDisplay = noDisplayUntilAnimate ? !animate : false
-  const classes = useStyles({hidden, noDisplay})
+  const classes = useStyles({
+    hidden,
+    noDisplay,
+    delayBy,
+    speedBy,
+    repeatBy
+  })
   const delay = delayProp === true ? 1 : delayProp
   const repeat = repeatProp === true ? 1 : repeatProp
+
+  const animateEndHandler = useCallback(
+    (e?: React.AnimationEvent<HTMLElement>) => {
+      onAnimateEnd?.(e)
+      e?.stopPropagation()
+    },
+    [onAnimateEnd]
+  )
 
   return (
     <>
@@ -70,7 +104,7 @@ export default function JackinBox({
         <link
           rel="stylesheet"
           href={`https://cdnjs.cloudflare.com/ajax/libs/animate.css/${version}/animate.min.css`}
-          key={`animatecss-${version}`}
+          key={`animate.css-${version}`}
         />
       </Head>
       <Box
@@ -86,6 +120,7 @@ export default function JackinBox({
           classes.root,
           classNameProp
         ])}
+        onAnimationEnd={animateEndHandler}
         {...rest}
       >
         {children}
