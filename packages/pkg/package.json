@@ -22,9 +22,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "npm run build",
-    "publish:patch": "yarn version --patch && yarn publish && git push",
-    "publish:minor": "yarn version --minor && yarn publish && git push",
-    "publish:major": "yarn version --major && yarn publish && git push",
+    "publish:patch": "yarn publish && git push",
+    "publish:minor": "yarn publish && git push",
+    "publish:major": "yarn publish && git push",
     "type-check": "tsc -p .",
     "install-peers": "install-peers -f",
     "build": "microbundle --format modern,cjs --jsx React.createElement --tsconfig tsconfig.json --jsxFragment React.Fragment",
