@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react'
 import clsx from 'clsx'
-import Head from 'next/head'
+// import Head from 'next/head'
 import {Box, BoxProps, createStyles, makeStyles} from '@material-ui/core'
 
 /*
@@ -8,7 +8,7 @@ Docs:
   https://animate.style
 */
 
-const VERSION = '4.1.1'
+// const VERSION = '4.1.1'
 const PREFIX = 'animate__'
 
 export type Props = {
@@ -65,7 +65,7 @@ export default function JackinBox({
   className: classNameProp,
   animate = true,
   name,
-  version = VERSION,
+  // version = VERSION,
   prefix = PREFIX,
   hideUntilAnimate = false,
   noDisplayUntilAnimate = false,
@@ -103,13 +103,13 @@ export default function JackinBox({
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href={`https://cdnjs.cloudflare.com/ajax/libs/animate.css/${version}/animate.min.css`}
-          key={`animate.css-${version}`}
-        />
-      </Head>
+      {/* <Head>
+          <link
+            rel="stylesheet"
+            href={`https://cdnjs.cloudflare.com/ajax/libs/animate.css/${version}/animate.min.css`}
+            key={`animate.css-${version}`}
+          />
+        </Head> */}
       <Box
         className={clsx([
           {
