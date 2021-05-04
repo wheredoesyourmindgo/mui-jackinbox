@@ -1,9 +1,10 @@
 import React from 'react';
+import { Name } from './Name';
 import { BoxProps } from '@material-ui/core';
 export declare type Props = {
     children?: React.ReactNode;
     animate?: boolean;
-    name: string;
+    name: Name;
     hideUntilAnimate?: boolean;
     noDisplayUntilAnimate?: boolean;
     speed?: 'slower' | 'slow' | 'fast' | 'faster';
