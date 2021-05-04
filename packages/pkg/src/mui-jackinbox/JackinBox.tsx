@@ -1,5 +1,6 @@
 import React, {useCallback} from 'react'
 import clsx from 'clsx'
+import {Name} from './Name'
 import {Box, BoxProps, createStyles, makeStyles} from '@material-ui/core'
 
 /*
@@ -13,7 +14,7 @@ const PREFIX = 'animate__'
 export type Props = {
   children?: React.ReactNode
   animate?: boolean
-  name: string
+  name: Name
   hideUntilAnimate?: boolean
   noDisplayUntilAnimate?: boolean
   speed?: 'slower' | 'slow' | 'fast' | 'faster' // 3s (or 3x), 2s (or 2x), 800ms (or .8x), 500ms (or .5x)
