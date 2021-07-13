@@ -7,6 +7,8 @@ export declare type Props = {
     name: Name;
     hideUntilAnimate?: boolean;
     noDisplayUntilAnimate?: boolean;
+    hideAfterAnimate?: boolean;
+    noDisplayAfterAnimate?: boolean;
     speed?: 'slower' | 'slow' | 'fast' | 'faster';
     delay?: boolean | 1 | 2 | 3 | 4 | 5;
     repeat?: boolean | 1 | 2 | 3;
@@ -18,4 +20,4 @@ export declare type Props = {
     repeatBy?: number;
     onAnimateEnd?: (e?: React.AnimationEvent<HTMLElement>) => void;
 } & Partial<BoxProps>;
-export default function JackinBox({ children, className: classNameProp, animate, name, prefix, hideUntilAnimate, noDisplayUntilAnimate, delayBy, speedBy, repeatBy, speed, infinite, delay: delayProp, repeat: repeatProp, onAnimateEnd, ...rest }: Props): JSX.Element;
+export default function JackinBox({ children, className: classNameProp, animate, name, prefix, hideUntilAnimate, noDisplayUntilAnimate, hideAfterAnimate, noDisplayAfterAnimate, delayBy, speedBy, repeatBy, speed, infinite, delay: delayProp, repeat: repeatProp, onAnimateEnd, ...rest }: Props): JSX.Element;

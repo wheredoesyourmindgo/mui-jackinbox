@@ -25,7 +25,10 @@
     "build": "yarn build:pkg",
     "prepublish": "npm run build",
     "watch:src": "nodemon --delay 1 --watch ./packages/pkg/dist/ --exec \"yarn --cwd packages/demo run cp-dist\"",
-    "dev": "concurrently -n pkg,demo,cp-dist 'yarn dev:pkg' 'yarn dev:demo' 'yarn watch:src'"
+    "dev": "concurrently -n pkg,demo,cp-dist 'yarn dev:pkg' 'yarn dev:demo' 'yarn watch:src'",
+    "format": "prettier --config .prettierrc --write './src/**/*.{ts,tsx,css}'",
+    "type-check": "tsc --noEmit -p .",
+    "type-check:watch": "npm run type-check -- --watch"
   },
   "devDependencies": {
     "concurrently": "^6.1.0",

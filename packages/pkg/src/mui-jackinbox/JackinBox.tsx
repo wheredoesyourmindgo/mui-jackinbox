@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useState} from 'react'
 import clsx from 'clsx'
 import {Name} from './Name'
 import {Box, BoxProps, createStyles, makeStyles} from '@material-ui/core'
@@ -17,6 +17,8 @@ export type Props = {
   name: Name
   hideUntilAnimate?: boolean
   noDisplayUntilAnimate?: boolean
+  hideAfterAnimate?: boolean
+  noDisplayAfterAnimate?: boolean
   speed?: 'slower' | 'slow' | 'fast' | 'faster' // 3s (or 3x), 2s (or 2x), 800ms (or .8x), 500ms (or .5x)
   delay?: boolean | 1 | 2 | 3 | 4 | 5
   repeat?: boolean | 1 | 2 | 3
@@ -69,6 +71,8 @@ export default function JackinBox({
   prefix = PREFIX,
   hideUntilAnimate = false,
   noDisplayUntilAnimate = false,
+  hideAfterAnimate = false,
+  noDisplayAfterAnimate = false,
   delayBy = '1s',
   speedBy = '1s',
   repeatBy = 1,
@@ -79,9 +83,14 @@ export default function JackinBox({
   onAnimateEnd,
   ...rest
 }: Props) {
+  const delay = delayProp === true ? 1 : delayProp
+  const repeat = repeatProp === true ? 1 : repeatProp
   // Use animate value to determine when the element should be visible
-  const hidden = hideUntilAnimate ? !animate : false
-  const noDisplay = noDisplayUntilAnimate ? !animate : false
+  const [hidden, setHidden] = useState(hideUntilAnimate ? !animate : false)
+  const [noDisplay, setNoDisplay] = useState(
+    noDisplayUntilAnimate ? !animate : false
+  )
+
   const classes = useStyles({
     hidden,
     noDisplay,
@@ -89,16 +98,16 @@ export default function JackinBox({
     speedBy,
     repeatBy
   })
-  const delay = delayProp === true ? 1 : delayProp
-  const repeat = repeatProp === true ? 1 : repeatProp
 
   const animateEndHandler = useCallback(
     (e?: React.AnimationEvent<HTMLElement>) => {
+      hideAfterAnimate && setHidden(true)
+      noDisplayAfterAnimate && setNoDisplay(true)
       onAnimateEnd?.(e)
       // Don't trigger animation end events w/ nested <JackinBox/> children
       e?.stopPropagation()
     },
-    [onAnimateEnd]
+    [onAnimateEnd, hideAfterAnimate, noDisplayAfterAnimate]
   )
 
   return (
