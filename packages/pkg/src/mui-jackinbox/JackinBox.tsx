@@ -112,15 +112,18 @@ export default function JackinBox({
     [onAnimateEnd, hideAfterAnimate, noDisplayAfterAnimate]
   )
 
+  const [animateStarted, setAnimateStarted] = useState(false)
+
   useEffect(() => {
-    if (animate) {
+    if (animate && !animateStarted) {
       hideUntilAnimate && setHidden(false)
       noDisplayUntilAnimate && setNoDisplay(false)
     }
-  }, [animate, hideUntilAnimate, noDisplayUntilAnimate])
+  }, [animate, hideUntilAnimate, noDisplayUntilAnimate, animateStarted])
 
   const animateStartHandler = useCallback(
     (e?: React.AnimationEvent<HTMLElement>) => {
+      setAnimateStarted(true)
       onAnimateStart?.(e)
       // Don't trigger animation end events w/ nested <JackinBox/> children
       e?.stopPropagation()
