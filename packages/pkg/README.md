@@ -20,7 +20,7 @@ See the demo to get moving today:
 
 ### Component Props
 
-|Prop|type|Options|Default|Description|
+|Prop|Type|Options|Default|Description|
 |---|---|---|---|---|
 |name|string|[_see below_](#animationNames)|empty|Animation Name|
 |animate|boolean|truthy \| falsy|true|Begin animate|
