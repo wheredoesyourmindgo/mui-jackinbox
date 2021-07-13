@@ -24,7 +24,7 @@ export type Props = {
   repeat?: boolean | 1 | 2 | 3
   infinite?: boolean
   version?: string
-  prefix?: string
+  // prefix?: string
   delayBy?: string // defaults to 1s
   speedBy?: string // defaults to 1s
   repeatBy?: number // defaults to 1
