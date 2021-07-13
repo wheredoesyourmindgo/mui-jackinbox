@@ -19,5 +19,6 @@ export declare type Props = {
     speedBy?: string;
     repeatBy?: number;
     onAnimateEnd?: (e?: React.AnimationEvent<HTMLElement>) => void;
+    onAnimateStart?: (e?: React.AnimationEvent<HTMLElement>) => void;
 } & Partial<BoxProps>;
-export default function JackinBox({ children, className: classNameProp, animate, name, prefix, hideUntilAnimate, noDisplayUntilAnimate, hideAfterAnimate, noDisplayAfterAnimate, delayBy, speedBy, repeatBy, speed, infinite, delay: delayProp, repeat: repeatProp, onAnimateEnd, ...rest }: Props): JSX.Element;
+export default function JackinBox({ children, className: classNameProp, animate, name, prefix, hideUntilAnimate, noDisplayUntilAnimate, hideAfterAnimate, noDisplayAfterAnimate, delayBy, speedBy, repeatBy, speed, infinite, delay: delayProp, repeat: repeatProp, onAnimateEnd, onAnimateStart, ...rest }: Props): JSX.Element;

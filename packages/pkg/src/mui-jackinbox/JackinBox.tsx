@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import clsx from 'clsx'
 import {Name} from './Name'
 import {Box, BoxProps, createStyles, makeStyles} from '@material-ui/core'
@@ -29,6 +29,7 @@ export type Props = {
   speedBy?: string // defaults to 1s
   repeatBy?: number // defaults to 1
   onAnimateEnd?: (e?: React.AnimationEvent<HTMLElement>) => void
+  onAnimateStart?: (e?: React.AnimationEvent<HTMLElement>) => void
 } & Partial<BoxProps>
 
 interface UseStylesProps {
@@ -81,6 +82,7 @@ export default function JackinBox({
   delay: delayProp = false,
   repeat: repeatProp = false,
   onAnimateEnd,
+  onAnimateStart,
   ...rest
 }: Props) {
   const delay = delayProp === true ? 1 : delayProp
@@ -110,6 +112,22 @@ export default function JackinBox({
     [onAnimateEnd, hideAfterAnimate, noDisplayAfterAnimate]
   )
 
+  useEffect(() => {
+    if (animate) {
+      hideUntilAnimate && setHidden(false)
+      noDisplayUntilAnimate && setNoDisplay(false)
+    }
+  }, [animate, hideUntilAnimate, noDisplayUntilAnimate])
+
+  const animateStartHandler = useCallback(
+    (e?: React.AnimationEvent<HTMLElement>) => {
+      onAnimateStart?.(e)
+      // Don't trigger animation end events w/ nested <JackinBox/> children
+      e?.stopPropagation()
+    },
+    [onAnimateStart]
+  )
+
   return (
     <Box
       className={clsx([
@@ -125,6 +143,7 @@ export default function JackinBox({
         classNameProp
       ])}
       onAnimationEnd={animateEndHandler}
+      onAnimationStart={animateStartHandler}
       {...rest}
     >
       {children}
