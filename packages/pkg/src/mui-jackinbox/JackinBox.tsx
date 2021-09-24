@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import clsx from 'clsx'
 import {Name} from './Name'
-import {Box, BoxProps, createStyles, makeStyles} from '@material-ui/core'
+import {Box, BoxProps} from '@mui/material'
 
 /*
 Docs:
@@ -30,38 +30,7 @@ export type Props = {
   repeatBy?: number // defaults to 1
   onAnimateEnd?: (e?: React.AnimationEvent<HTMLElement>) => void
   onAnimateStart?: (e?: React.AnimationEvent<HTMLElement>) => void
-} & Partial<BoxProps>
-
-interface UseStylesProps {
-  hidden: boolean
-  noDisplay: boolean
-  delayBy: string
-  speedBy: string
-  repeatBy: number
-}
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: ({
-      hidden,
-      noDisplay,
-      delayBy,
-      speedBy,
-      repeatBy
-    }: UseStylesProps) => ({
-      '--animate-delay': delayBy,
-      '--animate-duration': speedBy,
-      '--animate-repeat': repeatBy,
-      // Conditional CSS Properties
-      ...(hidden && {
-        visibility: 'hidden'
-      }),
-      ...(noDisplay && {
-        display: 'none'
-      })
-    })
-  })
-)
+} & BoxProps
 
 export default function JackinBox({
   children,
@@ -83,6 +52,7 @@ export default function JackinBox({
   repeat: repeatProp = false,
   onAnimateEnd,
   onAnimateStart,
+  sx,
   ...rest
 }: Props) {
   const delay = delayProp === true ? 1 : delayProp
@@ -92,14 +62,6 @@ export default function JackinBox({
   const [noDisplay, setNoDisplay] = useState(
     noDisplayUntilAnimate ? !animate : false
   )
-
-  const classes = useStyles({
-    hidden,
-    noDisplay,
-    delayBy,
-    speedBy,
-    repeatBy
-  })
 
   const animateEndHandler = useCallback(
     (e?: React.AnimationEvent<HTMLElement>) => {
@@ -142,9 +104,21 @@ export default function JackinBox({
           [`${prefix}repeat-${repeat}`]: animate && repeat,
           [`${prefix}delay-${delay}s`]: animate && delay
         },
-        classes.root,
         classNameProp
       ])}
+      sx={{
+        '--animate-delay': delayBy as any,
+        '--animate-duration': speedBy as any,
+        '--animate-repeat': repeatBy as any,
+        // Conditional CSS Properties
+        ...(hidden && {
+          visibility: 'hidden'
+        }),
+        ...(noDisplay && {
+          display: 'none'
+        }),
+        ...sx
+      }}
       onAnimationEnd={animateEndHandler}
       onAnimationStart={animateStartHandler}
       {...rest}

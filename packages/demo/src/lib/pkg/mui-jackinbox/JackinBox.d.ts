@@ -1,6 +1,6 @@
 import React from 'react';
 import { Name } from './Name';
-import { BoxProps } from '@material-ui/core';
+import { BoxProps } from '@mui/material';
 export declare type Props = {
     children?: React.ReactNode;
     animate?: boolean;
@@ -14,11 +14,10 @@ export declare type Props = {
     repeat?: boolean | 1 | 2 | 3;
     infinite?: boolean;
     version?: string;
-    prefix?: string;
     delayBy?: string;
     speedBy?: string;
     repeatBy?: number;
     onAnimateEnd?: (e?: React.AnimationEvent<HTMLElement>) => void;
     onAnimateStart?: (e?: React.AnimationEvent<HTMLElement>) => void;
-} & Partial<BoxProps>;
-export default function JackinBox({ children, className: classNameProp, animate, name, prefix, hideUntilAnimate, noDisplayUntilAnimate, hideAfterAnimate, noDisplayAfterAnimate, delayBy, speedBy, repeatBy, speed, infinite, delay: delayProp, repeat: repeatProp, onAnimateEnd, onAnimateStart, ...rest }: Props): JSX.Element;
+} & BoxProps;
+export default function JackinBox({ children, className: classNameProp, animate, name, prefix, hideUntilAnimate, noDisplayUntilAnimate, hideAfterAnimate, noDisplayAfterAnimate, delayBy, speedBy, repeatBy, speed, infinite, delay: delayProp, repeat: repeatProp, onAnimateEnd, onAnimateStart, sx, ...rest }: Props): JSX.Element;

@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import JackinBox from '../lib/pkg/index'
-import {Box, BoxProps, Divider, Paper, Typography} from '@material-ui/core'
+import {Box, Divider, Paper, Typography, alpha} from '@mui/material'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import Head from 'next/head'
 
 const codeBlock = `
 import React, {useCallback, useEffect, useState} from 'react'
 import JackinBox from 'mui-jackinbox'
-import {Box, BoxProps, Divider, Paper} from '@material-ui/core'
+import {Box, Divider, Paper, Typography} from '@mui/material'
 import Head from 'next/head'
 
 const IndexPage = () => {
@@ -88,15 +88,6 @@ const IndexPage = () => {
     setTimeout(() => setBye(true), 10000)
   }, [])
 
-  const PaperBox = useCallback(
-    ({children, ...rest}: BoxProps) => (
-      <Box borderRadius={3} overflow="hidden" bgcolor="#f0f0f0" p={3} {...rest}>
-        {children}
-      </Box>
-    ),
-    []
-  )
-
   const animateEndHandler = useCallback(() => {
     setShowCode(true)
   }, [])
@@ -138,14 +129,26 @@ const IndexPage = () => {
             maxWidth="50vw"
             margin="auto"
           >
-            <Divider style={{height: 3}} />
+            <Divider
+              sx={{
+                height: 4,
+                bgcolor: (theme) => alpha(theme.palette.secondary.main, 0.4)
+              }}
+            />
           </JackinBox>
         </JackinBox>
         <JackinBox name="fadeIn" delay={4} animate={bye} noDisplayUntilAnimate>
           <Typography variant="h2" gutterBottom>
             That was brought to you by...
           </Typography>
-          <Paper component={PaperBox}>
+          <Paper
+            sx={{
+              borderRadius: 2,
+              bgcolor: '#f0f0f0',
+              overflow: 'hidden',
+              padding: 3
+            }}
+          >
             <SyntaxHighlighter language="javascript">
               {codeBlock}
             </SyntaxHighlighter>

@@ -1,4 +1,4 @@
-import {createMuiTheme, responsiveFontSizes} from '@material-ui/core'
+import {createTheme, responsiveFontSizes} from '@mui/material'
 
 const systemFonts = [
   'cursive',
@@ -14,7 +14,7 @@ const systemFonts = [
   '"Segoe UI Symbol"'
 ]
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: ['Permanent Marker', ...systemFonts].join(',')
   },

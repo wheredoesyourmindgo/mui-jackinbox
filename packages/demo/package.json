@@ -6,7 +6,10 @@
     "node": "14.x"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.4",
+    "@emotion/cache": "^11.4.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "next": "^10.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -18,7 +21,8 @@
     "next": "next",
     "build": "next build",
     "export": "next export",
-    "cp-dist": "cp -R ../pkg/dist/ src/lib/pkg"
+    "cp-dist": "cp -R ../pkg/dist/ src/lib/pkg",
+    "lint": "next lint"
   },
   "devDependencies": {
     "@types/node": "^15.0.1",
@@ -29,13 +33,8 @@
     "@typescript-eslint/parser": "^4.22.0",
     "concurrently": "^6.0.2",
     "eslint": "^7.25.0",
+    "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-compat": "^3.9.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.23.2",
-    "eslint-plugin-react-hooks": "^4.2.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "typescript": "^4.2.4"
